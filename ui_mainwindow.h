@@ -45,7 +45,7 @@ public:
     QAction *actionRefresh;
     QAction *actionRefreshAuto;
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout_8;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout;
@@ -90,38 +90,55 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(904, 573);
+        MainWindow->resize(1280, 720);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(1280, 720));
+        MainWindow->setMaximumSize(QSize(1280, 720));
         actionPackageManager = new QAction(MainWindow);
         actionPackageManager->setObjectName(QString::fromUtf8("actionPackageManager"));
+        actionPackageManager->setEnabled(false);
         actionPreferences = new QAction(MainWindow);
         actionPreferences->setObjectName(QString::fromUtf8("actionPreferences"));
+        actionPreferences->setEnabled(false);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionUndoFilter = new QAction(MainWindow);
         actionUndoFilter->setObjectName(QString::fromUtf8("actionUndoFilter"));
+        actionUndoFilter->setEnabled(false);
         actionRedoFilter = new QAction(MainWindow);
         actionRedoFilter->setObjectName(QString::fromUtf8("actionRedoFilter"));
+        actionRedoFilter->setEnabled(false);
         actionReset = new QAction(MainWindow);
         actionReset->setObjectName(QString::fromUtf8("actionReset"));
+        actionReset->setEnabled(false);
         actionHelp = new QAction(MainWindow);
         actionHelp->setObjectName(QString::fromUtf8("actionHelp"));
+        actionHelp->setEnabled(false);
         actionCheckUpdate = new QAction(MainWindow);
         actionCheckUpdate->setObjectName(QString::fromUtf8("actionCheckUpdate"));
+        actionCheckUpdate->setEnabled(false);
         actionAboutApp = new QAction(MainWindow);
         actionAboutApp->setObjectName(QString::fromUtf8("actionAboutApp"));
         actionAboutQt = new QAction(MainWindow);
         actionAboutQt->setObjectName(QString::fromUtf8("actionAboutQt"));
         actionRuleSettings = new QAction(MainWindow);
         actionRuleSettings->setObjectName(QString::fromUtf8("actionRuleSettings"));
+        actionRuleSettings->setEnabled(false);
         actionRefresh = new QAction(MainWindow);
         actionRefresh->setObjectName(QString::fromUtf8("actionRefresh"));
+        actionRefresh->setEnabled(false);
         actionRefreshAuto = new QAction(MainWindow);
         actionRefreshAuto->setObjectName(QString::fromUtf8("actionRefreshAuto"));
         actionRefreshAuto->setCheckable(true);
+        actionRefreshAuto->setEnabled(false);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        verticalLayout_8 = new QVBoxLayout(centralwidget);
-        verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
+        verticalLayout_2 = new QVBoxLayout(centralwidget);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         groupBox = new QGroupBox(centralwidget);
@@ -137,6 +154,7 @@ public:
 
         pushButtonDel = new QPushButton(groupBox);
         pushButtonDel->setObjectName(QString::fromUtf8("pushButtonDel"));
+        pushButtonDel->setEnabled(false);
 
         verticalLayout->addWidget(pushButtonDel);
 
@@ -156,6 +174,7 @@ public:
 
         pushButtonDel2 = new QPushButton(groupBox_2);
         pushButtonDel2->setObjectName(QString::fromUtf8("pushButtonDel2"));
+        pushButtonDel2->setEnabled(false);
 
         verticalLayout_5->addWidget(pushButtonDel2);
 
@@ -175,6 +194,7 @@ public:
 
         pushButtonDel3 = new QPushButton(groupBox_3);
         pushButtonDel3->setObjectName(QString::fromUtf8("pushButtonDel3"));
+        pushButtonDel3->setEnabled(false);
 
         verticalLayout_6->addWidget(pushButtonDel3);
 
@@ -194,6 +214,7 @@ public:
 
         pushButtonDel4 = new QPushButton(groupBox_4);
         pushButtonDel4->setObjectName(QString::fromUtf8("pushButtonDel4"));
+        pushButtonDel4->setEnabled(false);
 
         verticalLayout_7->addWidget(pushButtonDel4);
 
@@ -201,7 +222,7 @@ public:
         horizontalLayout->addWidget(groupBox_4);
 
 
-        verticalLayout_8->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -214,6 +235,9 @@ public:
 
         comboBoxStar = new QComboBox(centralwidget);
         comboBoxStar->setObjectName(QString::fromUtf8("comboBoxStar"));
+        comboBoxStar->setEnabled(false);
+        comboBoxStar->setMinimumSize(QSize(120, 0));
+        comboBoxStar->setMaximumSize(QSize(120, 16777215));
 
         horizontalLayout_2->addWidget(comboBoxStar);
 
@@ -225,6 +249,9 @@ public:
 
         comboBoxRace = new QComboBox(centralwidget);
         comboBoxRace->setObjectName(QString::fromUtf8("comboBoxRace"));
+        comboBoxRace->setEnabled(false);
+        comboBoxRace->setMinimumSize(QSize(120, 0));
+        comboBoxRace->setMaximumSize(QSize(120, 16777215));
 
         horizontalLayout_2->addWidget(comboBoxRace);
 
@@ -235,6 +262,9 @@ public:
 
         comboBoxName = new QComboBox(centralwidget);
         comboBoxName->setObjectName(QString::fromUtf8("comboBoxName"));
+        comboBoxName->setEnabled(false);
+        comboBoxName->setMinimumSize(QSize(150, 0));
+        comboBoxName->setMaximumSize(QSize(150, 16777215));
 
         horizontalLayout_2->addWidget(comboBoxName);
 
@@ -246,6 +276,7 @@ public:
 
         lineEditNumber = new QLineEdit(centralwidget);
         lineEditNumber->setObjectName(QString::fromUtf8("lineEditNumber"));
+        lineEditNumber->setEnabled(false);
 
         horizontalLayout_2->addWidget(lineEditNumber);
 
@@ -257,46 +288,52 @@ public:
 
         lineEditPower = new QLineEdit(centralwidget);
         lineEditPower->setObjectName(QString::fromUtf8("lineEditPower"));
+        lineEditPower->setEnabled(false);
 
         horizontalLayout_2->addWidget(lineEditPower);
 
 
-        verticalLayout_8->addLayout(horizontalLayout_2);
+        verticalLayout_2->addLayout(horizontalLayout_2);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         pushButtonAddFeature = new QPushButton(centralwidget);
         pushButtonAddFeature->setObjectName(QString::fromUtf8("pushButtonAddFeature"));
+        pushButtonAddFeature->setEnabled(false);
 
         horizontalLayout_3->addWidget(pushButtonAddFeature);
 
         pushButtonAddNoFeature = new QPushButton(centralwidget);
         pushButtonAddNoFeature->setObjectName(QString::fromUtf8("pushButtonAddNoFeature"));
+        pushButtonAddNoFeature->setEnabled(false);
 
         horizontalLayout_3->addWidget(pushButtonAddNoFeature);
 
         pushButtonAddExcept = new QPushButton(centralwidget);
         pushButtonAddExcept->setObjectName(QString::fromUtf8("pushButtonAddExcept"));
+        pushButtonAddExcept->setEnabled(false);
 
         horizontalLayout_3->addWidget(pushButtonAddExcept);
 
         pushButtonReset = new QPushButton(centralwidget);
         pushButtonReset->setObjectName(QString::fromUtf8("pushButtonReset"));
+        pushButtonReset->setEnabled(false);
 
         horizontalLayout_3->addWidget(pushButtonReset);
 
         pushButtonRefresh = new QPushButton(centralwidget);
         pushButtonRefresh->setObjectName(QString::fromUtf8("pushButtonRefresh"));
+        pushButtonRefresh->setEnabled(false);
 
         horizontalLayout_3->addWidget(pushButtonRefresh);
 
 
-        verticalLayout_8->addLayout(horizontalLayout_3);
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 904, 28));
+        menubar->setGeometry(QRect(0, 0, 1280, 28));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menubar);
@@ -338,11 +375,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\346\230\237\351\231\205\351\205\222\351\246\206\346\263\275\346\213\211\345\233\276\351\242\204\350\250\200\347\211\214\347\255\233\351\200\211\345\231\250", nullptr));
-        actionPackageManager->setText(QApplication::translate("MainWindow", "\345\215\241\345\214\205\347\256\241\347\220\206", nullptr));
+        actionPackageManager->setText(QApplication::translate("MainWindow", "\345\215\241\345\214\205\347\256\241\347\220\206(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionPackageManager->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionPreferences->setText(QApplication::translate("MainWindow", "\351\246\226\351\200\211\351\241\271", nullptr));
+        actionPreferences->setText(QApplication::translate("MainWindow", "\351\246\226\351\200\211\351\241\271(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionPreferences->setShortcut(QApplication::translate("MainWindow", "Ctrl+,", nullptr));
 #endif // QT_NO_SHORTCUT
@@ -350,11 +387,11 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionUndoFilter->setText(QApplication::translate("MainWindow", "\344\270\212\344\270\200\346\255\245", nullptr));
+        actionUndoFilter->setText(QApplication::translate("MainWindow", "\344\270\212\344\270\200\346\255\245(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionUndoFilter->setShortcut(QApplication::translate("MainWindow", "Ctrl+Z", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionRedoFilter->setText(QApplication::translate("MainWindow", "\344\270\213\344\270\200\346\255\245", nullptr));
+        actionRedoFilter->setText(QApplication::translate("MainWindow", "\344\270\213\344\270\200\346\255\245(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionRedoFilter->setShortcut(QApplication::translate("MainWindow", "Ctrl+Y", nullptr));
 #endif // QT_NO_SHORTCUT
@@ -362,11 +399,11 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionReset->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionHelp->setText(QApplication::translate("MainWindow", "\346\237\245\347\234\213\345\270\256\345\212\251", nullptr));
+        actionHelp->setText(QApplication::translate("MainWindow", "\346\237\245\347\234\213\345\270\256\345\212\251(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionHelp->setShortcut(QApplication::translate("MainWindow", "F1", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionCheckUpdate->setText(QApplication::translate("MainWindow", "\346\243\200\346\237\245\346\233\264\346\226\260", nullptr));
+        actionCheckUpdate->setText(QApplication::translate("MainWindow", "\346\243\200\346\237\245\346\233\264\346\226\260(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionCheckUpdate->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", nullptr));
 #endif // QT_NO_SHORTCUT
@@ -378,7 +415,7 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionAboutQt->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+I", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionRuleSettings->setText(QApplication::translate("MainWindow", "\350\247\204\345\210\231\350\256\276\347\275\256", nullptr));
+        actionRuleSettings->setText(QApplication::translate("MainWindow", "\350\247\204\345\210\231\350\256\276\347\275\256(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionRuleSettings->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", nullptr));
 #endif // QT_NO_SHORTCUT

@@ -18,6 +18,10 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    const card_struct& getData(const QModelIndex &index) const;
+
+    void appendData(const card_struct &card);
+    void removeData(const QModelIndex &index);
 
 private:
     CardManager *pm_manager;

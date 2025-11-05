@@ -5,12 +5,13 @@
 #include <QStringList>
 
 namespace ruleSets {
+    extern QStringList cardStar;
     extern QStringList cardRaces;
 }
 
 struct card_struct
 {
-    card_struct() = delete;
+    card_struct();
     card_struct(const int id, const int star,
                 QString&& race, QString&& name,
                 const int number, const int power);
@@ -19,6 +20,8 @@ struct card_struct
                 const int number, const int power);
 
     bool operator==(const card_struct& that) const;
+    QString toString() const;
+    operator QString() const;
 
     int m_id;
     int m_star;

@@ -15,6 +15,10 @@ userListModel::userListModel(QObject *parent
         return;
     }
 
+    if(listIndex == userListIndex::UNDEFINED) {
+        QMessageBox::critical(nullptr, "Error", "UserListIndex is undefined");
+        return;
+    }
     pm_list = &manager->getUserList(listIndex);
     if(pm_list == nullptr) {
         QMessageBox::critical(nullptr, "Error", "UserList is null");
@@ -51,4 +55,24 @@ QVariant userListModel::data(const QModelIndex &index, int role) const {
     }
 
     return QVariant();
+}
+
+const card_struct& userListModel::getData(const QModelIndex &index) const {
+    return pm_list->at(index.row());
+}
+
+void userListModel::appendData(const card_struct &card) {
+    if(pm_list == nullptr) return;
+
+    beginInsertRows(QModelIndex(), pm_list->size(), pm_list->size());
+    pm_list->append(card);
+    endInsertRows();
+}
+
+void userListModel::removeData(const QModelIndex &index) {
+    if(pm_list == nullptr) return;
+
+    beginRemoveRows(QModelIndex(), index.row(), index.row());
+    pm_list->removeAt(index.row());
+    endRemoveRows();
 }
