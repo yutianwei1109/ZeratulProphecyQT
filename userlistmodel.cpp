@@ -1,0 +1,53 @@
+#include "userlistmodel.h"
+
+#include <QMessageBox>
+
+userListModel::userListModel(QObject *parent
+    , CardManager *manager
+    , userListIndex listIndex)
+    : QAbstractListModel(parent)
+    , pm_manager(nullptr)
+    , pm_list(nullptr)
+{
+    pm_manager = manager;
+    if(pm_manager == nullptr) {
+        QMessageBox::critical(nullptr, "Error", "CardManager is null");
+        return;
+    }
+
+    pm_list = &manager->getUserList(listIndex);
+    if(pm_list == nullptr) {
+        QMessageBox::critical(nullptr, "Error", "UserList is null");
+        return;
+    }
+}
+
+userListModel::~userListModel() {
+    pm_manager = nullptr;
+    pm_list = nullptr;
+}
+
+int userListModel::rowCount(const QModelIndex &parent = QModelIndex()) const {
+    if(parent.isValid()) {
+        return 0;
+    }
+    return pm_list->size();
+}
+
+QVariant userListModel::data(const QModelIndex &index, int role = Qt::DisplayRole) const {
+    if(!index.isValid() || index.row() >= pm_list->size()) {
+        return QVariant();
+    }
+
+    if(role == Qt::DisplayRole) {
+        card_struct *card = pm_list->at(index.row());
+        return QString("%1-%2-%3-%4-%5")
+            .arg(card->m_star)
+            .arg(card->m_race)
+            .arg(card->m_name)
+            .arg(card->m_number)
+            .arg(card->m_power)
+    }
+
+    return QVariant();
+}

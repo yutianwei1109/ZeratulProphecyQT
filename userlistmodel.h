@@ -1,0 +1,27 @@
+#ifndef USERLISTMODEL_H
+#define USERLISTMODEL_H
+
+#include <QAbstractTableModel>
+#include <QList>
+
+#include "card_struct.h"
+#include "cardmanager.h"
+
+class userListModel : public QAbstractListModel
+{
+    Q_OBJECT
+public:
+    explicit userListModel(QObject *parent = nullptr
+        , CardManager *manager = nullptr
+        , userListIndex listIndex);
+    ~userListModel();
+
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+private:
+    CardManager *pm_manager;
+    QList<card_struct> *pm_list;
+};
+
+#endif // USERLISTMODEL_H
