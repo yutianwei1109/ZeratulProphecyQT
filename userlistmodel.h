@@ -13,7 +13,7 @@ class userListModel : public QAbstractListModel
 public:
     explicit userListModel(QObject *parent = nullptr
         , CardManager *manager = nullptr
-        , userListIndex listIndex);
+        , userListIndex listIndex = userListIndex::UNDEFINED);
     ~userListModel();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

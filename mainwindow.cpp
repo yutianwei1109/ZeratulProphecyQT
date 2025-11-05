@@ -25,7 +25,19 @@ MainWindow::MainWindow(QWidget *parent)
         m_isRunning = false;
     }
 
-    
+    if(m_isRunning) {
+        // Set up models
+        m_featureListModel = new userListModel(this, m_cardManager, userListIndex::FEATURE);
+        m_noFeatureListModel = new userListModel(this, m_cardManager, userListIndex::NOFEATURE);
+        m_exceptListModel = new userListModel(this, m_cardManager, userListIndex::EXCEPT);
+        m_possibleListModel = new userListModel(this, m_cardManager, userListIndex::POSSIBLE);
+
+        // Set up views
+        ui->listViewFeature->setModel(m_featureListModel);
+        ui->listViewNoFeature->setModel(m_noFeatureListModel);
+        ui->listViewExcept->setModel(m_exceptListModel);
+        ui->listViewPossible->setModel(m_possibleListModel);
+    }
 }
 
 MainWindow::~MainWindow()

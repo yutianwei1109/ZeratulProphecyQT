@@ -10,7 +10,8 @@ enum class userListIndex{
     FEATURE,
     NOFEATURE,
     EXCEPT,
-    POSSIBLE
+    POSSIBLE,
+    UNDEFINED
 };
 
 class CardManager: public QObject
