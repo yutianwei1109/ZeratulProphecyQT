@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QStringListModel>
 
-#include "cardmanager.h"
 #include "userlistmodel.h"
 
 QT_BEGIN_NAMESPACE
@@ -54,29 +53,6 @@ private slots:
     void on_pushButtonRefresh_clicked();
 
 private:
-    // 设置nameList
-    void setComboBoxNameList();
-    // 设置curFilterCard
-    bool setCurFilterCard();
-    // 更新possiblelist
-    void updatePossibleListFromFeatureCard(const card_struct &featureCard);
-    void updatePossibleListFromNoFeatureCard(const card_struct &noFeaturecard);
-    void updatePossibleListFromExceptCard(const card_struct &exceptCard);
-    // 检查possibleCard有效性
-    bool checkPossbileCard(const card_struct &card);
-
-private:
     Ui::MainWindow *ui;
-    bool m_isRunning;
-    bool m_isAutoRefresh;
-    CardManager *m_cardManager;
-
-    userListModel *m_featureListModel;
-    userListModel *m_noFeatureListModel;
-    userListModel *m_exceptListModel;
-    userListModel *m_possibleListModel;
-
-    QStringListModel *m_comboBoxNameListModel;
-    card_struct m_curFilterCard;
 };
 #endif // MAINWINDOW_H

@@ -1,34 +1,53 @@
 #ifndef CARD_STRUCT_H
 #define CARD_STRUCT_H
 
-#include <QString>
-#include <QStringList>
+#include <iostream>
+#include <string>
+#include <unordered_set>
 
 namespace ruleSets {
-    extern QStringList cardStar;
-    extern QStringList cardRaces;
+    extern const std::unordered_set<int> cardStar;
+    extern const std::unordered_set<std::string> cardRaces;
 }
 
-struct card_struct
+class card_struct
 {
+public:
     card_struct();
     card_struct(const int id, const int star,
-                QString&& race, QString&& name,
+                std::string&& race, std::string&& name,
                 const int number, const int power);
     card_struct(const int id, const int star,
-                const QString& race, const QString& name,
+                const std::string& race, const std::string& name,
                 const int number, const int power);
+    card_struct(const std::string& format); // split by {'-'}
+    static card_struct fromString(const std::string& format);
 
     bool operator==(const card_struct& that) const;
-    QString toString() const;
-    operator QString() const;
 
-    int m_id;
-    int m_star;
-    QString m_race;
-    QString m_name;
-    int m_number;
-    int m_power;
+    operator std::string() const;
+    std::string toString() const;
+
+    int id() const;
+    int star() const;
+    const std::string& race() const;
+    const std::string& name() const;
+    int number() const;
+    int power() const;
+
+    void setStar(const int star);
+    void setRace(const std::string& race);
+    void setName(const std::string& name);
+    void setNumber(const int number);
+    void setPower(const int power);
+
+private:
+    int m_id{0}; // 0 - custom card | !0 - card from db
+    int m_star{1};
+    std::string m_race{""};
+    std::string m_name{"<custom>"};
+    int m_number{0};
+    int m_power{0};
 };
 
 #endif // CARD_STRUCT_H

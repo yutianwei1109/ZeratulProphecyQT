@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     card_struct.cpp \
-    cardmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     packmanagerdialog.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 
 HEADERS += \
     card_struct.h \
-    cardmanager.h \
     mainwindow.h \
     packmanagerdialog.h \
     preferencesdialog.h \

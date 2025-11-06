@@ -5,32 +5,27 @@
 #include <QList>
 
 #include "card_struct.h"
-#include "cardmanager.h"
 
 class userListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit userListModel(QObject *parent = nullptr
-        , CardManager *manager = nullptr
-        , userListIndex listIndex = userListIndex::UNDEFINED);
+    explicit userListModel(QObject *parent = nullptr);
     ~userListModel();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    const card_struct& getData(const QModelIndex &index) const;
 
-    void appendData(const card_struct &card);
-    void removeData(const QModelIndex &index);
+    bool appendCard(card_struct card);
+    bool removeCard(int index);
+    const card_struct getCard(int index) const;
 
+    void setCardList(QList<card_struct> cardList);
     void clear();
-    void copyFrom(const QList<card_struct>& list);
-
     int contains(const card_struct &card) const;
 
 private:
-    CardManager *pm_manager;
-    QList<card_struct> *pm_list;
+    QList<card_struct> m_cardList;
 };
 
 #endif // USERLISTMODEL_H
