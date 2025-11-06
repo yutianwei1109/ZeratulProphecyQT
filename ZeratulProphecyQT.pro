@@ -22,7 +22,8 @@ SOURCES += \
     packmanagerdialog.cpp \
     preferencesdialog.cpp \
     rulesettingsdialog.cpp \
-    userlistmodel.cpp
+    userlistmodel.cpp \
+    userlistmodelsmanager.cpp
 
 HEADERS += \
     card_struct.h \
@@ -30,7 +31,8 @@ HEADERS += \
     packmanagerdialog.h \
     preferencesdialog.h \
     rulesettingsdialog.h \
-    userlistmodel.h
+    userlistmodel.h \
+    userlistmodelsmanager.h
 
 FORMS += \
     mainwindow.ui \

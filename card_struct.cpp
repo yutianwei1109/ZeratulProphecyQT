@@ -40,13 +40,16 @@ card_struct card_struct::fromString(const std::string &format)
     std::istringstream iss(format);
     std::vector<std::string> tokens;
     std::string token;
-    while (std::getline(iss, token, '-'))
+    char delimiter;
+    if(format.find('-') != std::string::npos) delimiter = '-';
+    else if(format.find(',') != std::string::npos) delimiter = ',';
+    while (std::getline(iss, token, delimiter))
     {
         tokens.push_back(token);
     }
     if (tokens.size() != 6)
     {
-        throw std::runtime_error("Invalid card format");
+        return card_struct();
     }
     return card_struct(
         std::stoi(tokens[0]),
@@ -54,7 +57,8 @@ card_struct card_struct::fromString(const std::string &format)
         tokens[2],
         tokens[3],
         std::stoi(tokens[4]),
-        std::stoi(tokens[5]));
+        std::stoi(tokens[5])
+    );
 }
 
 bool card_struct::operator==(const card_struct &that) const

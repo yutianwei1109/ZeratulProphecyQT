@@ -50,7 +50,7 @@ void MainWindow::on_actionRefresh_triggered()
 
 void MainWindow::on_actionRefreshAuto_triggered(bool checked)
 {
-    
+    Q_UNUSED(checked);
 }
 
 void MainWindow::on_actionUndoFilter_triggered()
@@ -96,17 +96,17 @@ void MainWindow::on_pushButtonDel4_clicked()
 
 void MainWindow::on_comboBoxStar_currentTextChanged(const QString &arg1)
 {
-    
+    Q_UNUSED(arg1);
 }
 
 void MainWindow::on_comboBoxRace_currentTextChanged(const QString &arg1)
 {
-    
+    Q_UNUSED(arg1);
 }
 
 void MainWindow::on_comboBoxName_currentTextChanged(const QString &arg1)
 {
-    
+    Q_UNUSED(arg1);
 }
 
 void MainWindow::on_pushButtonAddFeature_clicked()

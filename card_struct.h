@@ -20,7 +20,7 @@ public:
     card_struct(const int id, const int star,
                 const std::string& race, const std::string& name,
                 const int number, const int power);
-    card_struct(const std::string& format); // split by {'-'}
+    card_struct(const std::string& format); // split by {'-', ','}
     static card_struct fromString(const std::string& format);
 
     bool operator==(const card_struct& that) const;
@@ -42,12 +42,12 @@ public:
     void setPower(const int power);
 
 private:
-    int m_id{0}; // 0 - custom card | !0 - card from db
-    int m_star{1};
-    std::string m_race{""};
-    std::string m_name{"<custom>"};
-    int m_number{0};
-    int m_power{0};
+    int m_id{-1}; // < 0 undefined | 0 - custom card | > 0 - card from db
+    int m_star{-1};
+    std::string m_race{"<undefined>"};
+    std::string m_name{"<undefined>"};
+    int m_number{-1};
+    int m_power{-1};
 };
 
 #endif // CARD_STRUCT_H
