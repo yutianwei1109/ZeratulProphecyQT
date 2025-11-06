@@ -23,6 +23,11 @@ public:
     void appendData(const card_struct &card);
     void removeData(const QModelIndex &index);
 
+    void clear();
+    void copyFrom(const QList<card_struct>& list);
+
+    int contains(const card_struct &card) const;
+
 private:
     CardManager *pm_manager;
     QList<card_struct> *pm_list;

@@ -76,3 +76,21 @@ void userListModel::removeData(const QModelIndex &index) {
     pm_list->removeAt(index.row());
     endRemoveRows();
 }
+
+void userListModel::clear() {
+    if(pm_list == nullptr) return;
+
+    beginResetModel();
+    pm_list->clear();
+    endResetModel();
+}
+
+void userListModel::copyFrom(const QList<card_struct>& list) {
+    beginResetModel();
+    *pm_list = list;
+    endResetModel();
+}
+
+int userListModel::contains(const card_struct &card) const {
+    return pm_list->contains(card);
+}

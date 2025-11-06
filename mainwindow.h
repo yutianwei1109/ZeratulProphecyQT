@@ -58,6 +58,12 @@ private:
     void setComboBoxNameList();
     // 设置curFilterCard
     bool setCurFilterCard();
+    // 更新possiblelist
+    void updatePossibleListFromFeatureCard(const card_struct &featureCard);
+    void updatePossibleListFromNoFeatureCard(const card_struct &noFeaturecard);
+    void updatePossibleListFromExceptCard(const card_struct &exceptCard);
+    // 检查possibleCard有效性
+    bool checkPossbileCard(const card_struct &card);
 
 private:
     Ui::MainWindow *ui;

@@ -384,9 +384,6 @@ public:
         actionPreferences->setShortcut(QApplication::translate("MainWindow", "Ctrl+,", nullptr));
 #endif // QT_NO_SHORTCUT
         actionExit->setText(QApplication::translate("MainWindow", "\351\200\200\345\207\272", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", nullptr));
-#endif // QT_NO_SHORTCUT
         actionUndoFilter->setText(QApplication::translate("MainWindow", "\344\270\212\344\270\200\346\255\245(\346\234\252\345\256\214\346\210\220)", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionUndoFilter->setShortcut(QApplication::translate("MainWindow", "Ctrl+Z", nullptr));
