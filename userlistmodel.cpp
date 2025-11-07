@@ -94,3 +94,37 @@ void userListModel::copyFrom(const QList<card_struct>& list) {
 int userListModel::contains(const card_struct &card) const {
     return pm_list->contains(card);
 }
+
+void userListModel::updatePossibleListFromFeatureCard(const card_struct &featureCard) {
+    const QString& race = featureCard.m_race;
+    int number = featureCard.m_number;
+    int power = featureCard.m_power;
+    QList<card_struct> rmList;
+    for(auto cit = pm_list->begin(); cit != pm_list->end(); cit++) {
+        card_struct& card = *cit;
+        if(card.m_race != race && card.m_number != number && (card.m_power < power - 200 || card.m_power > power + 200)) {
+            rmList.append(card);
+        } 
+    }
+    for(auto rit = rmList.begin(); rit != rmList.end(); rit++) {
+        removeData(index(pm_list->indexOf(*rit)));
+    }
+}
+void userListModel::updatePossibleListFromNoFeatureCard(const card_struct &noFeatureCard) {
+    const QString& race = noFeatureCard.m_race;
+    int number = noFeatureCard.m_number;
+    int power = noFeatureCard.m_power;
+    QList<card_struct> rmList;
+    for(auto cit = pm_list->begin(); cit != pm_list->end(); cit++) {
+        card_struct& card = *cit;
+        if(card.m_race == race || card.m_number == number || (card.m_power > power - 200 && card.m_power < power + 200)) {
+            rmList.append(card);
+        } 
+    }
+    for(auto rit = rmList.begin(); rit != rmList.end(); rit++) {
+        removeData(index(pm_list->indexOf(*rit)));
+    }
+}
+void userListModel::updatePossibleListFromExceptCard(const card_struct &exceptCard) {
+    removeData(index(pm_list->indexOf(exceptCard)));
+}

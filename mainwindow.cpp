@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         // init combo boxes
         ui->comboBoxStar->addItems(ruleSets::cardStar);
+        ui->comboBoxStar->setCurrentText("1");
         ui->comboBoxRace->addItems(ruleSets::cardRaces);
         ui->comboBoxName->setModel(m_comboBoxNameListModel);
         setComboBoxNameList();
@@ -374,6 +375,7 @@ void MainWindow::on_pushButtonAddFeature_clicked()
     if (!setCurFilterCard())
         return;
     m_featureListModel->appendData(m_curFilterCard);
+    m_possibleListModel->updatePossibleListFromFeatureCard(m_curFilterCard);
 }
 
 void MainWindow::on_pushButtonAddNoFeature_clicked()
@@ -381,6 +383,7 @@ void MainWindow::on_pushButtonAddNoFeature_clicked()
     if (!setCurFilterCard())
         return;
     m_noFeatureListModel->appendData(m_curFilterCard);
+    m_possibleListModel->updatePossibleListFromNoFeatureCard(m_curFilterCard);
 }
 
 void MainWindow::on_pushButtonAddExcept_clicked()
@@ -393,6 +396,7 @@ void MainWindow::on_pushButtonAddExcept_clicked()
         return;
     }
     m_exceptListModel->appendData(m_curFilterCard);
+    m_possibleListModel->updatePossibleListFromExceptCard(m_curFilterCard);
 }
 
 void MainWindow::on_pushButtonReset_clicked()

@@ -28,6 +28,10 @@ public:
 
     int contains(const card_struct &card) const;
 
+    void updatePossibleListFromFeatureCard(const card_struct &featureCard);
+    void updatePossibleListFromNoFeatureCard(const card_struct &featureCard);
+    void updatePossibleListFromExceptCard(const card_struct &featureCard);
+
 private:
     CardManager *pm_manager;
     QList<card_struct> *pm_list;
