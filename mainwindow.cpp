@@ -271,6 +271,7 @@ void MainWindow::on_actionAboutApp_triggered()
 
 void MainWindow::on_actionAboutQt_triggered()
 {
+    QApplication::aboutQt();
 }
 
 void MainWindow::on_pushButtonDel_clicked()
