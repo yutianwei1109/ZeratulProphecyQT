@@ -24,6 +24,10 @@ public:
     void clear();
     int contains(const card_struct &card) const;
 
+    void updatePossibleListFromFeatureCard(const card_struct &featureCard);
+    void updatePossibleListFromNoFeatureCard(const card_struct &featureCard);
+    void updatePossibleListFromExceptCard(const card_struct &featureCard);
+
 private:
     QList<card_struct> m_cardList;
 };
