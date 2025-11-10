@@ -28,7 +28,8 @@ private:
     // private instance
     static UserListModelsManager* m_instance;
     // private variables
-    QList<card_struct> m_allCards;
+    QList<card_struct> m_coreCards;
+    Qlist<card_struct> m_dlcCards;
     UserListModel *m_featureListModel;
     UserListModel *m_noFeatureListModel;
     UserListModel *m_exceptListModel;

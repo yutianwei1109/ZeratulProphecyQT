@@ -17,7 +17,8 @@ UserListModelsManager* UserListModelsManager::getInstance() {
 // private constructor
 UserListModelsManager::UserListModelsManager(QObject *parent) 
     : QObject(parent)
-    , m_allCards(QList<card_struct>{})
+    , m_coreCards(QList<card_struct>{})
+    , m_dlcCards(QList<card_struct>{})
 {
     if(!parent) {
         setParent(qApp);
@@ -33,17 +34,23 @@ void UserListModelsManager::initModels() {
     m_exceptListModel = new UserListModel(this);
     m_possibleListModel = new UserListModel(this);
     // load data
-    QFile fp(":/data/core.csv");
-    if(fp.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "File core.csv open failed:" << fp.errorString();
+    QFile fp_core_csv(QApplication::applicationDirPath() + "/data/core.csv");
+    if(fp_core_csv.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "File core.csv open failed:" << fp_core_csv.errorString();
+        return;
+    }
+    QFlie fp_dlc_csv(QApplication::applicationDirPath() + "/data/dlc.csv");
+    if(fp_dlc_csv.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "File dlc.csv open failed:" << fp_dlc_csv.errorString();
+        fp_core_csv.close();
         return;
     }
 
-    QTextStream in(&fp);
+    QTextStream in(&fp_core_csv);
     QString title = in.readLine();
     if(title.isEmpty()) {
         qDebug() << "Empty file or missing title.";
-        fp.close();
+        fp_core_csv.close();
         return;
     }
 
@@ -63,7 +70,7 @@ void UserListModelsManager::initModels() {
             continue;
         }
 
-        m_allCards.append(card);
+        m_coreCards.append(card);
 
         lineNum++;
     }
