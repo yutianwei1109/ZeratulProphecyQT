@@ -1,64 +1,78 @@
-# Qt相关文件
-debug/
-release/
-build-*/
-*.Debug
-*.Release
-*.pro.user
-*.user
-*.o
-*.so
-*.a
-*.la
-*.obj
-*.exe
-*.dll
-*.so.*
-*.dylib
-*.qmake.stash
-*.moc
-*.pch
-*.gch
-*.rcc
-*.qsb
-*.qt
-*.ts
-*.qm
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
 
-# 编译生成目录
-build-*/
-Makefile
-Makefile.Debug
-Makefile.Release
+*~
+*.autosave
+*.a
+*.core
+*.moc
+*.o
+*.obj
 *.orig
 *.rej
+*.so
+*.so.*
+*_pch.h.cpp
+*_resource.rc
+*.qm
+.#*
+*.*#
+core
+!core/
+tags
+.DS_Store
+.directory
+*.debug
+Makefile*
+*.prl
+*.app
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+Thumbs.db
+*.res
+*.rc
+/.qmake.cache
+/.qmake.stash
 
-# IDE相关文件
-.vscode/
+# qtcreator generated files
+*.pro.user*
+
+# xemacs temporary files
+*.flc
+
+# Vim temporary files
+.*.swp
+
+# Visual Studio generated files
+*.ib_pdb_index
+*.idb
+*.ilk
+*.pdb
 *.sln
-*.vcxproj*
-*.vcproj
 *.suo
+*.vcproj
+*vcproj.*.*.user
 *.ncb
-*.userprops
-*.filters
 *.sdf
 *.opensdf
-*.db
-*.opendb
+*.vcxproj
+*vcxproj.*
 
-# 日志和临时文件
-*.log
-*.tmp
-*.swp
-*~
-.DS_Store
-Thumbs.db
+# MinGW generated files
+*.Debug
+*.Release
 
-# 测试相关文件
-*.test
-*.result
+# Python byte code
+*.pyc
 
-# 其他不需要跟踪的文件
-*.cache
-*.autosave
+# Binaries
+# --------
+*.dll
+*.exe
+
+#IDE
+.vscode/
+
+#Debug
+Debug/
