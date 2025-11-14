@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>data/core.csv</file>
-        <file>data/dlc.csv</file>
-    </qresource>
-</RCC>
