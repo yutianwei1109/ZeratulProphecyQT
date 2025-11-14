@@ -18,11 +18,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/common/card_struct.cpp \
     src/main.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/model/userlistmodel.cpp \
+    test/programtest.cpp
 
 HEADERS += \
     src/common/card_struct.h \
-    src/mainwindow.h
+    src/mainwindow.h \
+    src/model/userlistmodel.h \
+    test/programtest.h
 
 FORMS += \
     ui/mainwindow.ui

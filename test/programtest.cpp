@@ -1,26 +1,23 @@
+#include "programtest.h"
+
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
+
 #include <iostream>
 #include <string>
 #include <vector>
-#include <exception>
 
 #include "../src/common/card_struct.h"
+#include "../src/model/userlistmodel.h"
 
-// 工具宏
-#define TEST_CALL(expr, name)                              \
-    do {                                                   \
-        try {                                              \
-            expr;                                          \
-        } catch (const std::exception& e) {                \
-            failed.push_back(std::string(name) +           \
-                             " → exception: " + e.what()); \
-        } catch (...) {                                    \
-            failed.push_back(std::string(name) +           \
-                             " → unknown exception");       \
-        }                                                  \
-    } while (0)
-
-int main()
+programTest::programTest(QObject *parent) : QObject(parent)
 {
+    // card_structTest(); // 已测试
+    userListModelTest();
+}
+
+void programTest::card_structTest() {
     std::vector<std::string> failed;
 
     // ------------------------------
@@ -110,6 +107,49 @@ int main()
         for (auto& f : failed) std::cout << "  - " << f << "\n";
         std::cout << "\nTotal Failed: " << failed.size() << "\n";
     }
+}
 
-    return 0;
+void programTest::userListModelTest() {
+    // 打开log文件
+    QFile logFile("userListModelTest-log.txt");
+    if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "无法打开log文件";
+        return;
+    }
+    QTextStream out(&logFile);
+
+    // 创建一个 UserListModel 实例
+    UserListModel model;
+
+    // 创建测试数据
+    card_struct card1(1,1,"Terran","<custom>",1,100);
+    card_struct card2(2,2,"Protoss","<custom>",2,200);
+    card_struct card3(3,3,"Zerg","<custom>",3,300);
+
+    // 测试 appendCard
+    out << "test appendCard: " << model.appendCard(card1) << "\n";
+    out << "test appendCard: " << model.appendCard(card2) << "\n";
+    out << "test appendCard: " << model.appendCard(card3) << "\n";
+
+    // 测试 rowCount
+    out << "test rowCount: " << model.rowCount() << "\n";
+
+    // 测试 getCard
+    out << "test getCard (index 0): " << model.getCard(0).toString().c_str() << "\n";
+    out << "test getCard (index 1): " << model.getCard(1).toString().c_str() << "\n";
+
+    // 测试 contains
+    out << "test contains (card1): " << model.contains(card1) << "\n";
+    out << "test contains (card2): " << model.contains(card2) << "\n";
+
+    // 测试 removeCard
+    out << "test removeCard (index 1): " << model.removeCard(1) << "\n";
+    out << "test rowCount after removeCard: " << model.rowCount() << "\n";
+    out << "test getCard after removeCard: " << model.getCard(1).toString().c_str() << "\n";
+
+    // 测试 clear
+    model.clear();
+    out << "test clear rowCount: " << model.rowCount() << "\n";
+
+    logFile.close();
 }
