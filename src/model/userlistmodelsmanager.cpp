@@ -33,7 +33,7 @@ UserListModelsManager::UserListModelsManager(QObject *parent)
     if(!parent) {
         setParent(qApp);
     }
-    
+
     initModels();
     initFiles();
     const QString& dataDir = QApplication::applicationDirPath() + "/Resources/cardData";
@@ -97,6 +97,7 @@ bool UserListModelsManager::checkAndCopyFile(const QString& targetFile, const QS
 
         qDebug() << "Copy file success";
     }
+    return true;
 }
 
 void UserListModelsManager::loadFile(const QString& filePath, QList<card_struct>& list) {
