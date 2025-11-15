@@ -129,6 +129,13 @@ bool UserListModelsManager::isPossibleCard(const card_struct& card) {
     }
     return true;
 }
+void UserListModelsManager::reset() {
+    m_featureListModel->clear();
+    m_noFeatureListModel->clear();
+    m_exceptListModel->clear();
+    m_possibleListModel->clear();
+    m_possibleListModel->setCardList(m_coreCards);
+}
 // public slots
 void UserListModelsManager::on_userListChanged(UserListUpdateData data) {
     QList<card_struct> earseList;
@@ -224,7 +231,17 @@ void UserListModelsManager::initModels() {
 }
 
 void UserListModelsManager::initFiles() {
-    const QString& dataDir = QApplication::applicationDirPath() + "/Resources/cardData";
+    const QString& appDir = QApplication::applicationDirPath();
+    const QString& resDir = appDir + "/Resources";
+    if(!checkAndCreateDirectory(resDir)) {
+        qDebug() << "Create resDir failed";
+        return;
+    }
+    const QString& dataDir = resDir + "/cardData";
+    if(!checkAndCreateDirectory(dataDir)) {
+        qDebug() << "Create dataDir failed";
+        return;
+    }
     const QString& coreFile = dataDir + "/core.csv";
     const QString& dlcFile = dataDir + "/dlc.csv";
     if(!checkAndCopyFile(coreFile, ":/cardData/core.csv")) {
@@ -233,6 +250,14 @@ void UserListModelsManager::initFiles() {
     if(!checkAndCopyFile(dlcFile, ":/cardData/dlc.csv")) {
         return;
     }
+}
+
+bool UserListModelsManager::checkAndCreateDirectory(const QString& dirPath) {
+    QDir dir(dirPath);
+    if(!dir.exists()) {
+        return dir.mkdir(dirPath);
+    }
+    return true;
 }
 
 bool UserListModelsManager::checkAndCopyFile(const QString& targetFile, const QString& sourceFile) {
@@ -324,6 +349,7 @@ void UserListModelsManager::loadFile(const QString& filePath, QList<card_struct>
         lineNum++;
     }
 
+    qDebug() << "Load file success:" << filePath << "lineNum:" << lineNum--;
     fp.close();
 }
 

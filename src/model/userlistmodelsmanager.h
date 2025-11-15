@@ -45,6 +45,7 @@ public:
     void updateUserList(UserListUpdateData data);
     void refreshPossibleLists();
     bool isPossibleCard(const card_struct& card);
+    void reset();
 public slots:
     void on_userListChanged(UserListUpdateData data);
 signals:
@@ -57,6 +58,7 @@ private:
     // model init
     void initModels();
     void initFiles();
+    bool checkAndCreateDirectory(const QString& dirPath);
     bool checkAndCopyFile(const QString& targetFile, const QString& sourceFile);
     void loadFile(const QString& filePath, QList<card_struct>& list);
     bool isGuiAvailable();
