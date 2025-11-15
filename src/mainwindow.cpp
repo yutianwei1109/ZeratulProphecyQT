@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_modelsManager(nullptr)
 {
     ui->setupUi(this);
+    ui->actionExit->setShortcut(QKeySequence("Alt+F4"));
 
     m_modelsManager = UserListModelsManager::getInstance();
     qDebug() << "modelsManager address: " << (void*)m_modelsManager;
