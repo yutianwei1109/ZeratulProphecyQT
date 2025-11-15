@@ -20,12 +20,14 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/model/userlistmodel.cpp \
+    src/model/userlistmodelsmanager.cpp \
     test/programtest.cpp
 
 HEADERS += \
     src/common/card_struct.h \
     src/mainwindow.h \
     src/model/userlistmodel.h \
+    src/model/userlistmodelsmanager.h \
     test/programtest.h
 
 FORMS += \
@@ -35,3 +37,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resouces/resources.qrc

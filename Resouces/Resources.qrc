@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cardData/core.csv</file>
+        <file>cardData/dlc.csv</file>
+    </qresource>
+</RCC>
