@@ -142,10 +142,15 @@ void programTest::userListModelTest() {
     out << "test contains (card1): " << model.contains(card1) << "\n";
     out << "test contains (card2): " << model.contains(card2) << "\n";
 
-    // 测试 removeCard
+    // 测试 removeCard - index
     out << "test removeCard (index 1): " << model.removeCard(1) << "\n";
     out << "test rowCount after removeCard: " << model.rowCount() << "\n";
     out << "test getCard after removeCard: " << model.getCard(1).toString().c_str() << "\n";
+
+    // 测试 removeCard - card
+    out << "test removeCard (card1): " << model.removeCard(card1) << "\n";
+    out << "test rowCount after removeCard: " << model.rowCount() << "\n";
+    out << "test getCard after removeCard: " << model.getCard(0).toString().c_str() << "\n";
 
     // 测试 clear
     model.clear();

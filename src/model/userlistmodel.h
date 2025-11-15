@@ -4,6 +4,7 @@
 #include <QAbstractTableModel>
 #include <QList>
 
+
 #include "../common/card_struct.h"
 
 class UserListModel : public QAbstractListModel
@@ -18,7 +19,9 @@ public:
 
     bool appendCard(const card_struct& card);
     bool removeCard(int index);
+    bool removeCard(const card_struct& card);
     const card_struct getCard(int index) const;
+    const QList<card_struct>& getCardList() const;
 
     void setCardList(QList<card_struct> cardList);
     void clear();

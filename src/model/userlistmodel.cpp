@@ -46,11 +46,23 @@ bool UserListModel::removeCard(int index) {
     return true;
 }
 
+bool UserListModel::removeCard(const card_struct& card) {
+    int index = m_cardList.indexOf(card);
+    if(index < 0 || index >= m_cardList.size()) {
+        return false;
+    }
+    return removeCard(index);
+}
+
 const card_struct UserListModel::getCard(int index) const {
     if(index < 0 || index >= m_cardList.size()) {
         return card_struct();
     }
     return m_cardList[index];
+}
+
+const QList<card_struct>& UserListModel::getCardList() const {
+    return m_cardList;
 }
 
 void UserListModel::setCardList(QList<card_struct> cardList) {
