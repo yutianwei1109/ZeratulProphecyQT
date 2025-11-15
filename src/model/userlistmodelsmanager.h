@@ -7,6 +7,26 @@
 #include "../common/card_struct.h"
 #include "userlistmodel.h"
 
+enum class UserListType {
+    UNDEFINED,
+    FEATURE,
+    NOFEATURE,
+    EXCEPT,
+    POSSIBLE
+};
+
+enum class UserListOperation {
+    UNDEFINED,
+    APPEND,
+    REMOVE
+};
+
+struct UserListUpdateData {
+    UserListType type{UserListType::UNDEFINED};
+    UserListOperation op{UserListOperation::UNDEFINED};
+    card_struct card;
+};
+
 class UserListModelsManager : public QObject
 {
     Q_OBJECT
@@ -20,6 +40,15 @@ public:
     UserListModelsManager(const UserListModelsManager &) = delete;
     UserListModelsManager &operator=(const UserListModelsManager &) = delete;
     // public methods
+    UserListModel* getUserListModel(UserListType type);
+    QStringList getNameListWithStarAndRace(int star, QString raceQStr);
+    void updateUserList(UserListUpdateData data);
+    void refreshPossibleLists();
+    bool isPossibleCard(const card_struct& card);
+public slots:
+    void on_userListChanged(UserListUpdateData data);
+signals:
+    void userListChanged(UserListUpdateData data);
 private:
     // private constructor
     explicit UserListModelsManager(QObject *parent = nullptr);
@@ -30,9 +59,11 @@ private:
     void initFiles();
     bool checkAndCopyFile(const QString& targetFile, const QString& sourceFile);
     void loadFile(const QString& filePath, QList<card_struct>& list);
+    bool isGuiAvailable();
     // private instance
     static UserListModelsManager* m_instance;
     // private variables
+    bool m_isInit;
     QList<card_struct> m_coreCards;
     QList<card_struct> m_dlcCards;
     UserListModel *m_featureListModel;
