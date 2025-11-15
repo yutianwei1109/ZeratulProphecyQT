@@ -111,7 +111,7 @@ void programTest::card_structTest() {
 
 void programTest::userListModelTest() {
     // 打开log文件
-    QFile logFile("userListModelTest-log.txt");
+    QFile logFile("test_userListModel.log");
     if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "无法打开log文件";
         return;
