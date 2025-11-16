@@ -22,9 +22,11 @@ enum class UserListOperation {
 };
 
 struct UserListUpdateData {
-    UserListType type{UserListType::UNDEFINED};
-    UserListOperation op{UserListOperation::UNDEFINED};
-    card_struct card;
+    UserListType m_type{UserListType::UNDEFINED};
+    UserListOperation m_op{UserListOperation::UNDEFINED};
+    card_struct m_card;
+
+    UserListUpdateData(UserListType type, UserListOperation op, card_struct card);
 };
 
 class UserListModelsManager : public QObject

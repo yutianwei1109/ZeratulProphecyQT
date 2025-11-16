@@ -9,6 +9,9 @@
 #include <QMessageBox>
 #include <QDateTime>
 
+UserListUpdateData::UserListUpdateData(UserListType type, UserListOperation op, card_struct card) 
+    : m_type(type), m_op(op), m_card(card) {}
+
 // Singleton
 UserListModelsManager* UserListModelsManager::m_instance = nullptr;
 
@@ -88,35 +91,35 @@ int UserListModelsManager::getCardIdByCardName(QString cardName) {
     return -1;
 }
 void UserListModelsManager::updateUserList(UserListUpdateData data) {
-    switch (data.type) {
+    switch (data.m_type) {
         case UserListType::FEATURE:
-            if (data.op == UserListOperation::APPEND) {
-                m_featureListModel->appendCard(data.card);
-            } else if (data.op == UserListOperation::REMOVE) {
-                m_featureListModel->removeCard(data.card);
+            if (data.m_op == UserListOperation::APPEND) {
+                m_featureListModel->appendCard(data.m_card);
+            } else if (data.m_op == UserListOperation::REMOVE) {
+                m_featureListModel->removeCard(data.m_card);
             }
             break;
         case UserListType::NOFEATURE:
-            if (data.op == UserListOperation::APPEND) {
-                m_noFeatureListModel->appendCard(data.card);
-            } else if (data.op == UserListOperation::REMOVE) {
-                m_noFeatureListModel->removeCard(data.card);
+            if (data.m_op == UserListOperation::APPEND) {
+                m_noFeatureListModel->appendCard(data.m_card);
+            } else if (data.m_op == UserListOperation::REMOVE) {
+                m_noFeatureListModel->removeCard(data.m_card);
             }
             break;
         case UserListType::EXCEPT:
-            if (data.op == UserListOperation::APPEND) {
-                if(data.card.name() != "<custom>")
-                    m_exceptListModel->appendCard(data.card);
-            } else if (data.op == UserListOperation::REMOVE) {
-                m_exceptListModel->removeCard(data.card);
+            if (data.m_op == UserListOperation::APPEND) {
+                if(data.m_card.name() != "<custom>")
+                    m_exceptListModel->appendCard(data.m_card);
+            } else if (data.m_op == UserListOperation::REMOVE) {
+                m_exceptListModel->removeCard(data.m_card);
             }
             break;
         case UserListType::POSSIBLE:
-            if (data.op == UserListOperation::APPEND) {
+            if (data.m_op == UserListOperation::APPEND) {
                 qDebug() << "possible list is not appendable";
                 return;
-            } else if (data.op == UserListOperation::REMOVE) {
-                m_possibleListModel->removeCard(data.card);
+            } else if (data.m_op == UserListOperation::REMOVE) {
+                m_possibleListModel->removeCard(data.m_card);
             }
             break;
         default:
@@ -169,50 +172,50 @@ void UserListModelsManager::reset() {
 // public slots
 void UserListModelsManager::on_userListChanged(UserListUpdateData data) {
     QList<card_struct> earseList;
-    switch (data.type) {
+    switch (data.m_type) {
         case UserListType::FEATURE:
-            if(data.op == UserListOperation::APPEND) {
+            if(data.m_op == UserListOperation::APPEND) {
                 for(const auto& card: m_possibleListModel->getCardList()) {
                     if(
-                        card.race() != data.card.race() &&
-                        card.number() != data.card.number() &&
-                        (card.power() < data.card.power() - 200 || card.power() > data.card.power() + 200)
+                        card.race() != data.m_card.race() &&
+                        card.number() != data.m_card.number() &&
+                        (card.power() < data.m_card.power() - 200 || card.power() > data.m_card.power() + 200)
                     ) {
                         earseList.append(card);
                     }
                 }
-            } else if (data.op == UserListOperation::REMOVE) {
+            } else if (data.m_op == UserListOperation::REMOVE) {
                 refreshPossibleLists();
             }
             break;
         case UserListType::NOFEATURE:
-            if(data.op == UserListOperation::APPEND) {
+            if(data.m_op == UserListOperation::APPEND) {
                 for(const auto& card: m_possibleListModel->getCardList()) {
                     if(
-                        card.race() == data.card.race() || 
-                        card.number() == data.card.number() ||
-                        (card.power() > data.card.power() - 200 && card.power() < data.card.power() + 200)
+                        card.race() == data.m_card.race() || 
+                        card.number() == data.m_card.number() ||
+                        (card.power() > data.m_card.power() - 200 && card.power() < data.m_card.power() + 200)
                     ) {
                         earseList.append(card);
                     }
                 }
-            } else if (data.op == UserListOperation::REMOVE) {
+            } else if (data.m_op == UserListOperation::REMOVE) {
                 refreshPossibleLists();
             }
             break;
         case UserListType::EXCEPT:
-            if(data.op == UserListOperation::APPEND) {
-                earseList.append(data.card);
-            } else if (data.op == UserListOperation::REMOVE) {
-                if(isPossibleCard(data.card)) {
-                    m_possibleListModel->appendCard(data.card);
+            if(data.m_op == UserListOperation::APPEND) {
+                earseList.append(data.m_card);
+            } else if (data.m_op == UserListOperation::REMOVE) {
+                if(isPossibleCard(data.m_card)) {
+                    m_possibleListModel->appendCard(data.m_card);
                 }
             }
             break;
         case UserListType::POSSIBLE:
-            if(data.op == UserListOperation::REMOVE) {
-                earseList.append(data.card);
-                m_exceptListModel->appendCard(data.card);
+            if(data.m_op == UserListOperation::REMOVE) {
+                earseList.append(data.m_card);
+                m_exceptListModel->appendCard(data.m_card);
             }
             break;
         default:
