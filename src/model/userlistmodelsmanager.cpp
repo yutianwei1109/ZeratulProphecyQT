@@ -57,7 +57,7 @@ QStringList UserListModelsManager::getNameListWithStarAndRace(int star, QString 
     }
     return nameList;
 }
-const card_struct& UserListModelsManager::getCardByName(QString cardName) {
+const card_struct UserListModelsManager::getCardByName(QString cardName) {
     if (cardName.isEmpty()) return card_struct();
     if (cardName == "<custom>") return card_struct(0, 1, "Neutral", "<custom>", 0, 0);
     for (const auto& card : m_coreCards) {
