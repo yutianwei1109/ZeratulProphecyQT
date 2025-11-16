@@ -42,6 +42,7 @@ public:
     // public methods
     UserListModel* getUserListModel(UserListType type);
     QStringList getNameListWithStarAndRace(int star, QString raceQStr);
+    int getCardIdByCardName(QString cardName);
     void updateUserList(UserListUpdateData data);
     void refreshPossibleLists();
     bool isPossibleCard(const card_struct& card);
