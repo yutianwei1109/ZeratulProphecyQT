@@ -58,6 +58,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     curSelectCardReset();
     setCurSelectCardWithFilter();
+    
+    m_isWorking = true;
 }
 
 MainWindow::~MainWindow()
