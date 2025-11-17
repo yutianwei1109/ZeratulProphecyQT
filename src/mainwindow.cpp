@@ -115,7 +115,8 @@ void MainWindow::curSelectCardReset() {
 
 void MainWindow::setCurSelectCardWithFilter() {
     if(!m_isWorking) return;
-    QString name = ui->comboBoxName->currentText();
+    QString name = ui->comboBoxName->currentText().trimmed();
+    if(name.isEmpty()) return;
     int id = m_modelsManager->getCardIdByCardName(name);
     if(id == -1) {
         QMessageBox::warning(this, "Error", "Can't find card with name: " + name);
@@ -287,6 +288,7 @@ void MainWindow::on_comboBoxName_currentTextChanged(const QString &arg1)
 {
     if(!m_isWorking) return;
     const QString& name = arg1;
+    if(name.isEmpty()) return;
     setCurSelectCardWithFilter();
     if(name == "<custom>") {
         ui->lineEditNumber->setEnabled(true);
