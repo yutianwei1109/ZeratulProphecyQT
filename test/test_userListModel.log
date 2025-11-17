@@ -1,0 +1,12 @@
+test appendCard: 1
+test appendCard: 1
+test appendCard: 1
+test rowCount: 3
+test getCard (index 0): 1-1-Terran-<custom>-1-100
+test getCard (index 1): 2-2-Protoss-<custom>-2-200
+test contains (card1): 1
+test contains (card2): 1
+test removeCard (index 1): 1
+test rowCount after removeCard: 2
+test getCard after removeCard: 3-3-Zerg-<custom>-3-300
+test clear rowCount: 0
